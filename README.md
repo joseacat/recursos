@@ -1,6 +1,6 @@
 # Recursos varios
 
-Recursos utilizados para el desarrollo web.
+Recursos utilizados para el desarrollo web. Siéntete libre de utilizarlo y editarlo a tu gusto.
 
 
 ## ¿Qué hay aquí?:
