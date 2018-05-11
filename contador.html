@@ -1,0 +1,81 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Contador JavaScript</title>
+    <script>
+      // Setea el final del contador
+      var fecha_final = new Date("Apr 25, 2018 18:37:25").getTime();
+
+      // Actualiza el contador cada segundo
+      var x = setInterval(function() {
+
+        // Fecha actual
+        var fecha_actual = new Date().getTime();
+
+        // Diferencia entre fecha final y fecha actual
+        var diferencia = fecha_final - fecha_actual;
+
+        // Calcula días, horas, minutos, segundos
+        var dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        var horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+        var segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+        // Muestra el contador
+        document.getElementById("contador").innerHTML = "<div id='contador-dias'></div><div id='contador-horas'></div>";
+        if(dias < 1){
+            document.getElementById("contador-dias").innerHTML = "¡Últimas horas!";
+        }else{
+            document.getElementById("contador-dias").innerHTML = "Quedan " + dias + " días";
+        }
+        document.getElementById("contador-horas").innerHTML = rellenarConCeros(horas, 2) + " : " + rellenarConCeros(minutos, 2) + " : " + rellenarConCeros(segundos, 2);
+
+        // Si el contador acaba
+        if (diferencia < 0) {
+            clearInterval(x);
+            document.getElementById("contador").innerHTML = "FIN DE LA PROMOCIÓN";
+        }
+    }, 1000);
+    
+    // Función para rellenar con ceros a la izquerda
+    function rellenarConCeros(num, size) {
+        var s = num+"";
+        while (s.length < size) s = "0" + s;
+            return s;
+    }
+</script>
+<style>
+#contador-horas {
+    background: #FFF;
+    border: 2px solid #fd7274;
+    font-size: 24px;
+    font-weight: bold;
+    color: #636363;
+    border-bottom-radius: 4px;
+}
+#contador {
+    background: #fd7274;
+    text-align: center;
+    text-transform: uppercase;
+    max-width: 220px;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+#contador-dias {
+    padding: 5px;
+    font-size: 20px;
+    color: #FFF;
+}
+</style>
+  </head>
+  <body>
+    <div id="contador"></div>
+  </body>
+</html>
